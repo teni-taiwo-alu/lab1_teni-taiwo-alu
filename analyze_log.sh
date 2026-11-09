@@ -19,6 +19,12 @@ lane_changes=$(grep -c "Changing lane:" "$log_file")
 driver=$(grep "Driver *:" "$log_file" | tail -n 1 | sed "s/.*: //")
 top_speed=$(grep "Top speed *:" "$log_file" | tail -n 1 | sed "s/.*: //")
 
+# the log can be empty or have no finished trip
+if [ -z "$driver" ]; then
+    driver="no finished trip yet"
+    top_speed="no finished trip yet"
+fi
+
 echo "Sessions: $sessions"
 echo "Zebra stops: $zebra_stops"
 echo "Lane changes: $lane_changes"

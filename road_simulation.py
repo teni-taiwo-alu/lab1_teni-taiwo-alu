@@ -33,7 +33,8 @@ def is_valid_sign(sign):
     if sign_type == "bus" or sign_type == "zebra":
         return True
     if sign_type == "speed":
-        return 20 <= int(sign) <= 100
+        # limits have at most 3 digits
+        return len(sign) <= 3 and 20 <= int(sign) <= 100
     return False
 
 
